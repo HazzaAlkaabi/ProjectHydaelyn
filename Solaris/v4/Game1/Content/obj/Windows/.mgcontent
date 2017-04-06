@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Grant/Desktop/Python/Solaris/v4/Game1/Content/font1.spritefont</File>
+    <File>C:/Users/Grant/Desktop/Python/Solaris/v4/Game1/Content/font2.spritefont</File>
+    <File>C:/Users/Grant/Desktop/Python/Solaris/v4/Game1/Content/font3.spritefont</File>
+    <File>C:/Users/Grant/Desktop/Python/Solaris/v4/Game1/Content/font4.spritefont</File>
+    <File>C:/Users/Grant/Desktop/Python/Solaris/v4/Game1/Content/font5.spritefont</File>
+  </SourceFiles>
+</SourceFileCollection>
