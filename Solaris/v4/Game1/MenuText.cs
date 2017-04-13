@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MainGame;
-using Events;
+using MenuEvents;
 
 namespace Menus {
     public class MenuText {

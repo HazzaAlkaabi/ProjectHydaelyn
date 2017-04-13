@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MainGame;
-using Events;
+using MenuEvents;
 using Cameras;
 
 
@@ -90,12 +90,12 @@ namespace Menus {
             // Play button
             Vector2 playButtonPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2 - 25);
             MenuButton playButton = new MenuButton(this.fonts[2], "Resume", playButtonPos, Color.White, Color.Green, new ButtonEventArgs("play"));
-            playButton.ButtonClicked += Events.ButtonEvents.changeMenu;
+            playButton.ButtonClicked += MenuEvents.ButtonEvents.changeMenu;
             menuButtons[0] = playButton;
             // Main menu button
             Vector2 returnToMenuPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2 + 25);
             MenuButton returnToMenuButton = new MenuButton(this.fonts[2], "Return to menu", returnToMenuPos, Color.White, Color.Green, new ButtonEventArgs("mainmenu"));
-            returnToMenuButton.ButtonClicked += Events.ButtonEvents.changeMenu;
+            returnToMenuButton.ButtonClicked += MenuEvents.ButtonEvents.changeMenu;
             menuButtons[1] = returnToMenuButton;
             // Make and return menu object
             Menu pauseMenu = new Menu(menuText, menuButtons);
@@ -114,12 +114,12 @@ namespace Menus {
             // Placeholder button
             Vector2 placeholderButtonPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2);
             MenuButton placeholderButton = new MenuButton(this.fonts[2], "Placeholder", placeholderButtonPos, Color.White, Color.Green, new ButtonEventArgs("mainmenu"));
-            placeholderButton.ButtonClicked += Events.ButtonEvents.changeMenu;
+            placeholderButton.ButtonClicked += MenuEvents.ButtonEvents.changeMenu;
             menuButtons[0] = placeholderButton;
             // Return to menu button
             Vector2 returnButtonPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2 + 50);
             MenuButton returnButton = new MenuButton(this.fonts[2], "Return to menu", returnButtonPos, Color.White, Color.Green, new ButtonEventArgs("mainmenu"));
-            returnButton.ButtonClicked += Events.ButtonEvents.changeMenu;
+            returnButton.ButtonClicked += MenuEvents.ButtonEvents.changeMenu;
             menuButtons[1] = returnButton;
             // Make and return menu object
             Menu pauseMenu = new Menu(menuText, menuButtons);

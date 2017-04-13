@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Events {
+namespace MenuEvents {
 
 
     public delegate void ButtonEventHandler(Object sender, ButtonEventArgs args);

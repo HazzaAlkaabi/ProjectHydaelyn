@@ -56,7 +56,7 @@ namespace MainGame {
 
             // Init menus and handler
             menuHandler = new MenuHandler(fonts, camera);
-            Events.ButtonEvents.game1 = this;
+            MenuEvents.ButtonEvents.game1 = this;
         }
 
 

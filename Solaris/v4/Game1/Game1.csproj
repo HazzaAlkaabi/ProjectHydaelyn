@@ -45,6 +45,7 @@
     <Compile Include="Bodies.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="KeyboardListener.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuButton.cs" />
     <Compile Include="MenuText.cs" />
