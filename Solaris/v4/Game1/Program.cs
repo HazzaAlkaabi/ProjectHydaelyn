@@ -1,6 +1,7 @@
 ﻿using System;
+using MainGame;
 
-namespace Game1 {
+namespace Program {
 #if WINDOWS || LINUX
     /// <summary>
     /// The main class.

@@ -2,8 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Menus;
+using Cameras;
 
-namespace Game1 {
+namespace MainGame {
 
 
     public class Game1 : Game {

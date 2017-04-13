@@ -5,16 +5,30 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game1", "Game1.csproj", "{29321B2A-B586-4DBA-A35E-957F843E332A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitleStorageConfigInfo", "..\TitleStorageConfigInfo\TitleStorageConfigInfo.csproj", "{B3186B85-EF1F-4342-8785-A1841D59B201}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29321B2A-B586-4DBA-A35E-957F843E332A}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{29321B2A-B586-4DBA-A35E-957F843E332A}.Debug|x86.ActiveCfg = Debug|x86
 		{29321B2A-B586-4DBA-A35E-957F843E332A}.Debug|x86.Build.0 = Debug|x86
+		{29321B2A-B586-4DBA-A35E-957F843E332A}.Release|Any CPU.ActiveCfg = Release|x86
 		{29321B2A-B586-4DBA-A35E-957F843E332A}.Release|x86.ActiveCfg = Release|x86
 		{29321B2A-B586-4DBA-A35E-957F843E332A}.Release|x86.Build.0 = Release|x86
+		{B3186B85-EF1F-4342-8785-A1841D59B201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3186B85-EF1F-4342-8785-A1841D59B201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3186B85-EF1F-4342-8785-A1841D59B201}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B3186B85-EF1F-4342-8785-A1841D59B201}.Debug|x86.Build.0 = Debug|Any CPU
+		{B3186B85-EF1F-4342-8785-A1841D59B201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3186B85-EF1F-4342-8785-A1841D59B201}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3186B85-EF1F-4342-8785-A1841D59B201}.Release|x86.ActiveCfg = Release|Any CPU
+		{B3186B85-EF1F-4342-8785-A1841D59B201}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

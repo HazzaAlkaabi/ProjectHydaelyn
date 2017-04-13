@@ -15,7 +15,7 @@ namespace Events {
 
     public static class ButtonEvents {
 
-        static public Game1.Game1 game1;
+        static public MainGame.Game1 game1;
 
         static public void changeMenu(Object sender, ButtonEventArgs e) {
             if (e.command == "mainmenu") {
