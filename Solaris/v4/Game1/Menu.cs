@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Game1;
+using Events;
 
 
 namespace Menus {
@@ -40,91 +41,6 @@ namespace Menus {
         }
     }
 
-    public class MenuButton {
-
-        public SpriteFont font;
-        public string label;
-        public Vector2 pos;
-        public Vector2 centerPos;
-        Vector2 size;
-        public Color inactiveColor;
-        public Color activeColor;
-        private bool active = false;
-        EventArgs args;
-
-        public event EventHandler ButtonClicked;
-
-        public MenuButton(SpriteFont font, string label, Vector2 pos, Color inactiveColor, Color activeColor, EventArgs args) {
-            this.font = font;
-            this.label = label;
-            // Find dimensions of the text adn set position to be the center of the text
-            Vector2 size = font.MeasureString(label);
-            Vector2 centerPos = new Vector2(pos.X - size.X / 2, pos.Y - size.Y / 2);
-            this.centerPos = centerPos;
-            this.pos = pos;
-            this.size = size;
-            this.inactiveColor = inactiveColor;
-            this.activeColor = activeColor;
-            this.args = args;
-        }
-
-        public void update(MouseState mouseState) {
-            Vector2 mousePos = new Vector2(mouseState.X, mouseState.Y);
-            this.active = false;
-            bool xActive = false;
-            bool yActive = false;
-            if (mousePos.X >= this.pos.X - (this.size.X / 2) && mousePos.X <= this.pos.X + (this.size.X / 2)) {
-                xActive = true;
-            }
-            if (xActive == true && mousePos.Y >= this.pos.Y - (this.size.Y /2 ) && mousePos.Y <= this.pos.Y + (this.size.Y / 2)) {
-                yActive = true;
-            }
-            // The mouse is within the confines of the button
-            if (xActive == true && yActive == true) {
-                this.active = true;
-            }
-
-            if (this.active == true && mouseState.LeftButton == ButtonState.Pressed) {
-                // raise the event for the event handler
-                if (ButtonClicked != null) {
-                    ButtonClicked(this, this.args);
-                }
-                
-            }
-        }
-
-        public void render(SpriteBatch spriteBatch) {
-            Color color = this.inactiveColor;
-            if (this.active == true) {
-                color = this.activeColor;
-            }
-            spriteBatch.DrawString(this.font, this.label, this.centerPos, color);
-        }
-    }
-
-    public class MenuText {
-
-        public SpriteFont font;
-        public string text;
-        public Vector2 pos;
-        public Color color;
-
-        public MenuText(SpriteFont font, string text, Vector2 pos, Color color) {
-            // Find the center point of the text and set the new position so the text is rendered centered on the given position
-            this.font = font;
-            this.text = text;
-            Vector2 size = font.MeasureString(text);
-            Vector2 centerPos = new Vector2(pos.X - size.X / 2, pos.Y - size.Y / 2);
-            this.pos = centerPos;
-            this.color = color;
-        }
-
-        public void render(SpriteBatch spriteBatch) {
-            // Render the given text
-            spriteBatch.DrawString(this.font, this.text, this.pos, this.color);
-        }
-    }
-
     public class MenuGenerator {
 
         SpriteFont[] fonts;
@@ -135,46 +51,76 @@ namespace Menus {
 
         public Menu mainMenu(Camera camera) {
             // Make menu texts
-            Vector2 titleSplashPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2 - 100);
+            Vector2 titleSplashPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2 - 200);
             MenuText titleSplash = new MenuText(this.fonts[4], "Solaris", titleSplashPos, Color.White);
             MenuText[] menuText = new MenuText[1];
             menuText[0] = titleSplash;
             // Make menu buttons
-            Vector2 playButtonPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2);
-            MenuButton playButton = new MenuButton(this.fonts[2], "Play", playButtonPos, Color.White, Color.Green, EventArgs.Empty);
-            playButton.ButtonClicked += Events.EventHandler.changeMenu;
-            MenuButton[] menuButtons = new MenuButton[1];
+            MenuButton[] menuButtons = new MenuButton[3];
+            // Play button
+            Vector2 playButtonPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2 - 50);
+            MenuButton playButton = new MenuButton(this.fonts[2], "Play", playButtonPos, Color.White, Color.Green, new ButtonEventArgs("play"));
+            playButton.ButtonClicked += ButtonEvents.changeMenu;
             menuButtons[0] = playButton;
+            // Settings button
+            Vector2 settingButtonPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2);
+            MenuButton settingsButton = new MenuButton(this.fonts[2], "Settings", settingButtonPos, Color.White, Color.Green, new ButtonEventArgs("settings"));
+            settingsButton.ButtonClicked += ButtonEvents.changeMenu;
+            menuButtons[1] = settingsButton;
+            // Quit button
+            Vector2 quitButtonPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2 + 50);
+            MenuButton quitButton = new MenuButton(this.fonts[2], "Quit", quitButtonPos, Color.White, Color.Red, new ButtonEventArgs("quit"));
+            quitButton.ButtonClicked += ButtonEvents.changeMenu;
+            menuButtons[2] = quitButton;
+            // Make and return menu object
             Menu mainMenu = new Menu(menuText, menuButtons);
             return mainMenu;
         }
 
         public Menu pauseMenu(Camera camera) {
             // Make menu texts
+            MenuText[] menuText = new MenuText[1];
+            // Menu title
             Vector2 titleSplashPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2 - 100);
             MenuText titleSplash = new MenuText(this.fonts[4], "Pause", titleSplashPos, Color.White);
-            MenuText[] menuText = new MenuText[1];
             menuText[0] = titleSplash;
             // Make menu buttons
-            Vector2 playButtonPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2);
-            MenuButton playButton = new MenuButton(this.fonts[2], "Resume", playButtonPos, Color.White, Color.Green, EventArgs.Empty);
-            MenuButton[] menuButtons = new MenuButton[1];
+            MenuButton[] menuButtons = new MenuButton[2];
+            // Play button
+            Vector2 playButtonPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2 - 25);
+            MenuButton playButton = new MenuButton(this.fonts[2], "Resume", playButtonPos, Color.White, Color.Green, new ButtonEventArgs("play"));
+            playButton.ButtonClicked += Events.ButtonEvents.changeMenu;
             menuButtons[0] = playButton;
+            // Main menu button
+            Vector2 returnToMenuPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2 + 25);
+            MenuButton returnToMenuButton = new MenuButton(this.fonts[2], "Return to menu", returnToMenuPos, Color.White, Color.Green, new ButtonEventArgs("mainmenu"));
+            returnToMenuButton.ButtonClicked += Events.ButtonEvents.changeMenu;
+            menuButtons[1] = returnToMenuButton;
+            // Make and return menu object
             Menu pauseMenu = new Menu(menuText, menuButtons);
             return pauseMenu;
         }
 
         public Menu settinsMenu(Camera camera) {
             // Make menu texts
+            MenuText[] menuText = new MenuText[1];
+            // Menu title
             Vector2 titleSplashPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2 - 100);
             MenuText titleSplash = new MenuText(this.fonts[4], "Settings", titleSplashPos, Color.White);
-            MenuText[] menuText = new MenuText[1];
             menuText[0] = titleSplash;
             // Make menu buttons
-            Vector2 playButtonPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2);
-            MenuButton settingsButton = new MenuButton(this.fonts[2], "Change some settings", playButtonPos, Color.White, Color.Green, EventArgs.Empty);
-            MenuButton[] menuButtons = new MenuButton[1];
-            menuButtons[0] = settingsButton;
+            MenuButton[] menuButtons = new MenuButton[2];
+            // Placeholder button
+            Vector2 placeholderButtonPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2);
+            MenuButton placeholderButton = new MenuButton(this.fonts[2], "Placeholder", placeholderButtonPos, Color.White, Color.Green, new ButtonEventArgs("mainmenu"));
+            placeholderButton.ButtonClicked += Events.ButtonEvents.changeMenu;
+            menuButtons[0] = placeholderButton;
+            // Return to menu button
+            Vector2 returnButtonPos = new Vector2(camera.resolution.X / 2, camera.resolution.Y / 2 + 50);
+            MenuButton returnButton = new MenuButton(this.fonts[2], "Return to menu", returnButtonPos, Color.White, Color.Green, new ButtonEventArgs("mainmenu"));
+            returnButton.ButtonClicked += Events.ButtonEvents.changeMenu;
+            menuButtons[1] = returnButton;
+            // Make and return menu object
             Menu pauseMenu = new Menu(menuText, menuButtons);
             return pauseMenu;
         }
@@ -199,12 +145,9 @@ namespace Menus {
             this.displayMenu = true;
         }
 
-        public bool update() {
-            if (this.displayMenu == false) {
-                return true;
-            }
+        public void update() {
             currentMenu.update();
-            return false;
+            return;
         }
 
         public bool render(SpriteBatch spriteBatch) {

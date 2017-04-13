@@ -46,6 +46,8 @@
     <Compile Include="Events.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="MenuButton.cs" />
+    <Compile Include="MenuText.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
